@@ -18,8 +18,13 @@ jobs:
       - name: Install Angular CLI
         run: npm install -g @angular/cli
 
-      - name: Install Chromium
-        run: sudo apt-get install -y chromium-browser
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libxss1 libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libgbm1 libgtk-3-0
 
       - name: Run Tests
-        run: ng test
+        run: |
+          CHROME_BIN=$(which chromium) ng test --browsers=ChromeHeadless --watch=false
+        env:
+          CHROME_BIN: /usr/bin/chromium-browser
