@@ -28,3 +28,19 @@ jobs:
           CHROME_BIN=$(which chromium) ng test --browsers=ChromeHeadless --watch=false
         env:
           CHROME_BIN: /usr/bin/chromium-browser
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Packages
+        run: npm ci
+
+      - name: Build
+        run: ng build 
