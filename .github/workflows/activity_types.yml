@@ -3,7 +3,16 @@ on:
     pull_request:
         types:
             - opened
-    workflow_dispatch:        
+        branches:
+            - main
+            - 'ego-*'   #ergo-aws, ergo-fix-upload etc
+            - 'feat/**' #feat/login, feat/login/google 
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+            - 'ego-*'   #ergo-aws, ergo-fix-upload etc
+            - 'feat/**' #feat/login, feat/login/google 
 jobs:
     print-info:
         runs-on: ubuntu-latest
