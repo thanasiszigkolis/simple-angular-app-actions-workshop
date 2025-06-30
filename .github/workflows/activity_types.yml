@@ -1,5 +1,9 @@
 name: Print Info
-on: [push, workflow_dispatch]
+on:
+    pull_request:
+        types:
+            - opened
+    workflow_dispatch:        
 jobs:
     print-info:
         runs-on: ubuntu-latest
