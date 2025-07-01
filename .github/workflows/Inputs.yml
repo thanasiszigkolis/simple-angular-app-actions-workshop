@@ -1,0 +1,14 @@
+name: Inputs
+on:
+    workflow_dispatch:
+        inputs: 
+            environment:
+                description: 'Choose env'
+                required: true
+                default: 'staging' 
+jobs:
+    print-input:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Show input
+              run: echo "Env:${{inputs.environment}}"
